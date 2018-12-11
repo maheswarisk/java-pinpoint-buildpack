@@ -34,7 +34,7 @@ module JavaBuildpack
       # @param [Hash] context a collection of utilities used the component
       def initialize(context)
         super(context)
-        @logger        = JavaBuildpack::Logging::LoggerFactory.instance.get_logger PinpointAgent
+        @logger = JavaBuildpack::Logging::LoggerFactory.instance.get_logger PinpointAgent
       end
 
 
@@ -55,7 +55,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-        @droplet.java_opts.add_javaagent(@droplet.sandbox + "pinpoint-bootstrap-1.7.4-SNAPSHOT.jar")
+        @droplet.java_opts.add_javaagent(@droplet.sandbox + "pinpoint-bootstrap-1.7.1.jar")
         @droplet.java_opts.add_system_property('pinpoint.agentId', @application.details['application_name'])
         @droplet.java_opts.add_system_property('pinpoint.applicationName', @application.details['application_name'])
 

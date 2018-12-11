@@ -44,7 +44,8 @@ module JavaBuildpack
         @droplet.copy_resources
 
         credentials = @application.services.find_service(FILTER)['credentials']
-        pinpoint_config_uri=credentials['pinpoint.config.uri']
+        #pinpoint_config_uri=credentials['pinpoint.config.uri']
+        pinpoint_config_uri="https://github.com/maheswarisk/pinpoint/blob/master/pinpoint.config"
         @logger.info { "pinpoint_config_uri  #{pinpoint_config_uri}" }
 
         download_pinpoint_config(pinpoint_config_uri)

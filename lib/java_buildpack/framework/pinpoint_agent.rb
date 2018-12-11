@@ -101,6 +101,7 @@ module JavaBuildpack
             shell "wget -O pinpoint.config #{pinpoint_config_uri}"
             FileUtils.mkdir_p(@droplet.sandbox)
             FileUtils.mv("./pinpoint.config", @droplet.sandbox)
+             @logger.info { "Moved pinpoint config"}
           end
         end
 

@@ -44,8 +44,8 @@ module JavaBuildpack
         @droplet.copy_resources
 
         credentials = @application.services.find_service(FILTER)['credentials']
-        #pinpoint_config_uri=credentials['pinpoint.config.uri']
-        pinpoint_config_uri="https://github.com/maheswarisk/pinpoint/blob/master/pinpoint.config"
+        pinpoint_config_uri=credentials['pinpoint.config.uri']
+        #pinpoint_config_uri="https://github.com/maheswarisk/pinpoint/blob/master/pinpoint.config"
         @logger.info { "pinpoint_config_uri  #{pinpoint_config_uri}" }
 
         download_pinpoint_config(pinpoint_config_uri)
@@ -100,7 +100,9 @@ module JavaBuildpack
             root_path = Pathname.new(root)
             shell "wget pinpoint.config #{pinpoint_config_uri}"
             FileUtils.mkdir_p(@droplet.sandbox)
-            FileUtils.mv("./pinpoint.config", @droplet.sandbox)
+            @logger.info { "@droplet.sandbox #{@droplet.sandbox}" }
+            @logger.info { "moving files from current dir to #{@droplet.sandbox}" }
+            FileUtils.mv("pinpoint.config", @droplet.sandbox)
           end
         end
 

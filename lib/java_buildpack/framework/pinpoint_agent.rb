@@ -98,8 +98,10 @@ module JavaBuildpack
         with_timing "downloading pinpoint.config to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
           Dir.mktmpdir do |root|
             root_path = Pathname.new(root)
+            @logger.info { "root path is.... #{root_path}"}
             shell "wget -O pinpoint.config #{pinpoint_config_uri}"
             FileUtils.mkdir_p(@droplet.sandbox)
+            @logger.info { "droplet.sandbox is #{@droplet.sandbox}"}
             FileUtils.mv("./pinpoint.config", @droplet.sandbox)
              @logger.info { "Moved pinpoint config"}
           end

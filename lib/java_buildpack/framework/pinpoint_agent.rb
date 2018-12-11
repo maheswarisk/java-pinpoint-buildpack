@@ -54,7 +54,7 @@ module JavaBuildpack
 
       # (see JavaBuildpack::Component::BaseComponent#release)
       def release
-        @droplet.java_opts.add_javaagent(@droplet.sandbox + "pinpoint-bootstrap-1.7.1.jar")
+        @droplet.java_opts.add_javaagent(@droplet.sandbox + "pinpoint-bootstrap-1.7.4-SNAPSHOT.jar")
         @droplet.java_opts.add_system_property('pinpoint.agentId', @application.details['application_name'])
         @droplet.java_opts.add_system_property('pinpoint.applicationName', @application.details['application_name'])
 
@@ -97,7 +97,7 @@ module JavaBuildpack
         with_timing "downloading pinpoint.config to #{@droplet.sandbox.relative_path_from(@droplet.root)}" do
           Dir.mktmpdir do |root|
             root_path = Pathname.new(root)
-            shell "wget -O pinpoint.config #{pinpoint_config_uri}"
+            shell "wget pinpoint.config #{pinpoint_config_uri}"
             FileUtils.mkdir_p(@droplet.sandbox)
             FileUtils.mv("./pinpoint.config", @droplet.sandbox)
           end

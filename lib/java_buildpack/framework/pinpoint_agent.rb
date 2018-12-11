@@ -100,7 +100,7 @@ module JavaBuildpack
             root_path = Pathname.new(root)
             @logger.info { "root path is.... #{root_path}"}
             shell "wget -O pinpoint.config #{pinpoint_config_uri}"
-            fh = open pinpoint.config
+            fh = open "./pinpoint.config"
             while (line = fh.gets) 
                 @logger.info {" #{line} "}
             end
